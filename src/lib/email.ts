@@ -22,12 +22,10 @@ export const sendProposalNotification = async () => {
             from_name: "Success Engine"
         };
 
-        if (PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-            await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-            console.log("Email sent successfully!");
-        } else {
-            console.warn("EmailJS credentials not configured. Mocking send to:", templateParams.boyfriend_email, "and", templateParams.girlfriend_email);
-        }
+        // Since the key is now configured, we send directly.
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+        console.log("Email sent successfully!");
+
     } catch (error) {
         console.error("Failed to send email:", error);
     }
