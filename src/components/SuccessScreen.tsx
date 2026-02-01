@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { CheckCircle2, Heart, Github, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { CONFIG } from '../constants/config';
 
 const SuccessScreen: React.FC = () => {
 
@@ -55,7 +56,7 @@ const SuccessScreen: React.FC = () => {
                     </div>
 
                     <p className="text-xl md:text-3xl text-white font-light leading-relaxed italic" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                        &quot;Distance is temporary, this commit is permanent.&quot;
+                        &quot;{CONFIG.messages.success}&quot;
                     </p>
 
                     <div className="mt-8 flex items-center justify-center gap-4 text-primary">
@@ -81,3 +82,4 @@ const SuccessScreen: React.FC = () => {
 };
 
 export default SuccessScreen;
+

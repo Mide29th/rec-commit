@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Lock, Wifi, Clapperboard, MapPin } from 'lucide-react';
+import { Lock, Wifi, MapPin } from 'lucide-react';
+import { CONFIG } from '../constants/config';
 
 interface HandshakeScreenProps {
     onAccept: () => void;
@@ -44,7 +45,7 @@ const HandshakeScreen: React.FC<HandshakeScreenProps> = ({ onAccept }) => {
                 <div className="space-y-2">
                     <p className="text-primary/60 font-mono text-xs tracking-[0.3em] uppercase animate-pulse">System encrypted</p>
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                        Incoming Connection Request...
+                        {CONFIG.messages.handshake}
                     </h1>
                 </div>
 
@@ -94,3 +95,4 @@ const HandshakeScreen: React.FC<HandshakeScreenProps> = ({ onAccept }) => {
 };
 
 export default HandshakeScreen;
+

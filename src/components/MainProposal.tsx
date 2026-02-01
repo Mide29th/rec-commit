@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { Heart, GitCommit, ShieldCheck, AlertCircle, GitPullRequest, Code2, CheckCircle2 } from 'lucide-react';
+import { CONFIG } from '../constants/config';
 
 interface MainProposalProps {
-    onAccept: () => void;
+    onAccept: (date: Date) => void;
     onReject: () => void;
 }
 
@@ -16,6 +17,10 @@ const MainProposal: React.FC<MainProposalProps> = ({ onAccept, onReject }) => {
         setNoButtonPos({ x, y });
         setIsMoved(true);
     }, []);
+
+    const handleAccept = () => {
+        onAccept(new Date());
+    };
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center animate-fade-in relative bg-black overflow-hidden font-sans">
@@ -50,7 +55,7 @@ const MainProposal: React.FC<MainProposalProps> = ({ onAccept, onReject }) => {
                         <div className="flex items-center gap-4 text-primary">
                             <GitPullRequest className="w-8 h-8" />
                             <h1 className="text-3xl md:text-5xl font-bold font-display" style={{ fontFamily: 'Playfair Display, Georgia, serif' }}>
-                                Pull Request: Be My Girlfriend?
+                                {CONFIG.messages.proposalHeader}
                             </h1>
                         </div>
 
@@ -67,7 +72,7 @@ const MainProposal: React.FC<MainProposalProps> = ({ onAccept, onReject }) => {
                     </div>
 
                     <div className="space-y-4">
-                        <p className="text-muted italic">&quot;Merging this PR will create a new branch in our lives, optimized for maximum happiness.&quot;</p>
+                        <p className="text-muted italic">&quot;{CONFIG.messages.proposalSub}&quot;</p>
                         <div className="flex items-center justify-center gap-2 text-success">
                             <CheckCircle2 className="w-4 h-4" />
                             <span className="text-xs font-mono uppercase tracking-widest">All Checks Passed</span>
@@ -95,7 +100,7 @@ const MainProposal: React.FC<MainProposalProps> = ({ onAccept, onReject }) => {
                         </div>
 
                         <button
-                            onClick={onAccept}
+                            onClick={handleAccept}
                             className="w-full md:w-auto group relative px-12 py-5 bg-primary overflow-hidden rounded-lg shadow-[0_0_30px_rgba(212,175,55,0.2)] hover:shadow-[0_0_50px_rgba(212,175,55,0.4)] transition-all duration-300"
                         >
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
@@ -120,3 +125,4 @@ const MainProposal: React.FC<MainProposalProps> = ({ onAccept, onReject }) => {
 };
 
 export default MainProposal;
+

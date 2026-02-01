@@ -1,4 +1,5 @@
 import emailjs from '@emailjs/browser';
+import { CONFIG } from '../constants/config';
 
 // These should be configured in your EmailJS dashboard
 // Service: Gmail, ID: service_id
@@ -9,16 +10,17 @@ const SERVICE_ID = 'service_rec_commit'; // Placeholder
 const TEMPLATE_ID = 'template_proposal_success'; // Placeholder
 const PUBLIC_KEY = '0X3gIYEuFqoCz_W-p'; // Live Key
 
-export const sendProposalNotification = async () => {
+export const sendProposalNotification = async (officialStartDate: Date) => {
     try {
         console.log("Triggering email notification...");
 
         const templateParams = {
-            message: "The Pull Request was successfully merged! She said YES.",
-            subject: "REC & COMMIT: Proposal Accepted",
+            message: `The Pull Request was successfully merged! ${CONFIG.messages.success}`,
+            subject: CONFIG.emailSubject,
+            official_start: officialStartDate.toLocaleString(),
             boyfriend_email: "jbabawale1@gmail.com",
             girlfriend_email: "babawale78@yahoo.com",
-            to_name: "Joshua & Recipient",
+            to_name: `${CONFIG.names.him} & ${CONFIG.names.her}`,
             from_name: "Success Engine"
         };
 

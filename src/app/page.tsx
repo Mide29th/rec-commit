@@ -26,9 +26,9 @@ export default function Home() {
         setAppState('PROPOSAL');
     };
 
-    const handleProposalAccept = () => {
+    const handleProposalAccept = (date: Date) => {
         setAppState('SUCCESS');
-        sendProposalNotification();
+        sendProposalNotification(date);
     };
 
     const handleProposalReject = () => {
